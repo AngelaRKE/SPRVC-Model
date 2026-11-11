@@ -1,0 +1,5 @@
+experimento,variante,modelo,hiperparametros,auc_cv_train,auc_train,auc_test,pr_auc_test,umbral_operativo,recall_test,precision_test,f1_test,t_entrenamiento_s,t_inferencia_test_s,diagnostico
+Exp 1,Baseline,Regresión logística,"C = 1.0, class_weight = None",0.4934,0.5129,0.5082,0.2104,0.205,0.635,0.2112,0.317,0.035,0.0008,Subajuste (underfitting)
+Exp 2,Ajuste A,Regresión logística,"C = 0.3, class_weight = None",0.4938,0.5129,0.5082,0.2104,0.205,0.635,0.2112,0.317,0.024,0.0006,Subajuste (underfitting)
+Exp 3,Alternativo (defecto),Random Forest,"n_estimators = 100, max_depth = None, min_samples_leaf = 1",0.5036,1.0,0.4962,0.2056,0.2,0.6712,0.2068,0.3162,4.976,0.1446,Sobreajuste severo
+Exp 4,Ajuste B (optimizado),Random Forest,"n_estimators = 300, max_depth = 10, min_samples_leaf = 10, max_features = 0.8, class_weight = balanced_subsample",0.5015,0.9104,0.5151,0.216,0.472,0.6668,0.2104,0.3199,25.408,0.1357,Sobreajuste severo

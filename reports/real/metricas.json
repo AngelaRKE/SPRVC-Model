@@ -1,0 +1,88 @@
+{
+  "ganador": "Exp 3 Random Forest",
+  "comparacion_lr_vs_rf": {
+    "mejor_lr": "Exp 2",
+    "mejor_rf": "Exp 3",
+    "dif_auc_test": 0.01204628182799794,
+    "ic95": [
+      -0.0063389238661573505,
+      0.030122724017452234
+    ]
+  },
+  "matriz_confusion": {
+    "TN": 2599,
+    "FP": 5330,
+    "FN": 681,
+    "TP": 1390
+  },
+  "experimentos": [
+    {
+      "experimento": "Exp 1",
+      "variante": "Baseline",
+      "modelo": "Regresión logística",
+      "hiperparametros": "C = 1.0, class_weight = None",
+      "auc_cv_train": 0.4934,
+      "auc_train": 0.5129,
+      "auc_test": 0.5082,
+      "pr_auc_test": 0.2104,
+      "umbral_operativo": 0.205,
+      "recall_test": 0.635,
+      "precision_test": 0.2112,
+      "f1_test": 0.317,
+      "t_entrenamiento_s": 0.035,
+      "t_inferencia_test_s": 0.0008,
+      "diagnostico": "Subajuste (underfitting)"
+    },
+    {
+      "experimento": "Exp 2",
+      "variante": "Ajuste A",
+      "modelo": "Regresión logística",
+      "hiperparametros": "C = 0.3, class_weight = None",
+      "auc_cv_train": 0.4938,
+      "auc_train": 0.5129,
+      "auc_test": 0.5082,
+      "pr_auc_test": 0.2104,
+      "umbral_operativo": 0.205,
+      "recall_test": 0.635,
+      "precision_test": 0.2112,
+      "f1_test": 0.317,
+      "t_entrenamiento_s": 0.024,
+      "t_inferencia_test_s": 0.0006,
+      "diagnostico": "Subajuste (underfitting)"
+    },
+    {
+      "experimento": "Exp 3",
+      "variante": "Alternativo (defecto)",
+      "modelo": "Random Forest",
+      "hiperparametros": "n_estimators = 100, max_depth = None, min_samples_leaf = 1",
+      "auc_cv_train": 0.5036,
+      "auc_train": 1.0,
+      "auc_test": 0.4962,
+      "pr_auc_test": 0.2056,
+      "umbral_operativo": 0.2,
+      "recall_test": 0.6712,
+      "precision_test": 0.2068,
+      "f1_test": 0.3162,
+      "t_entrenamiento_s": 4.976,
+      "t_inferencia_test_s": 0.1446,
+      "diagnostico": "Sobreajuste severo"
+    },
+    {
+      "experimento": "Exp 4",
+      "variante": "Ajuste B (optimizado)",
+      "modelo": "Random Forest",
+      "hiperparametros": "n_estimators = 300, max_depth = 10, min_samples_leaf = 10, max_features = 0.8, class_weight = balanced_subsample",
+      "auc_cv_train": 0.5015,
+      "auc_train": 0.9104,
+      "auc_test": 0.5151,
+      "pr_auc_test": 0.216,
+      "umbral_operativo": 0.472,
+      "recall_test": 0.6668,
+      "precision_test": 0.2104,
+      "f1_test": 0.3199,
+      "t_entrenamiento_s": 25.408,
+      "t_inferencia_test_s": 0.1357,
+      "diagnostico": "Sobreajuste severo"
+    }
+  ]
+}

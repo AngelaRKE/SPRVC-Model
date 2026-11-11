@@ -1,0 +1,37 @@
+[INFO] Cargando dataset: data/processed/dataset_real_limpio.csv (50,000 registros)...
+[INFO] Conjunto Train: 40,000 muestras | Conjunto Test: 10,000 muestras
+[INFO] Tasa de abandono: train 20.7% | test 20.7% | variables: 26
+[INFO] Exp 1 - Entrenando Regresión Logística baseline (C=1.0, sin pesos de clase)...
+[INFO] Exp 1 finalizado: entrenamiento final en 0.04 s | AUC-ROC validación cruzada (5 folds) = 0.4934
+[INFO] Exp 2 - Ajustando Regresión Logística (GridSearchCV: C, class_weight)...
+[INFO] Exp 2 finalizado: entrenamiento final en 0.02 s | AUC-ROC validación cruzada (5 folds) = 0.4938
+[INFO] Exp 3 - Entrenando Random Forest por defecto (100 árboles, sin poda)...
+[INFO] Exp 3 finalizado: entrenamiento final en 4.98 s | AUC-ROC validación cruzada (5 folds) = 0.5036
+[INFO] Exp 4 - Ajustando Random Forest (RandomizedSearchCV, 5 combinaciones x 5 folds)...
+[INFO] Exp 4 finalizado: entrenamiento final en 25.41 s | AUC-ROC validación cruzada (5 folds) = 0.5015
+[RESULTADOS EN TEST SET] (mismo conjunto de prueba para los 4 experimentos)
+experimento              modelo  auc_train  auc_test  pr_auc_test  recall_test  f1_test              diagnostico
+      Exp 1 Regresión logística     0.5129    0.5082       0.2104       0.6350   0.3170 Subajuste (underfitting)
+      Exp 2 Regresión logística     0.5129    0.5082       0.2104       0.6350   0.3170 Subajuste (underfitting)
+      Exp 3       Random Forest     1.0000    0.4962       0.2056       0.6712   0.3162       Sobreajuste severo
+      Exp 4       Random Forest     0.9104    0.5151       0.2160       0.6668   0.3199       Sobreajuste severo
+[INFO] Ganador (mejor AUC en validación cruzada): Exp 3 - Random Forest (n_estimators = 100, max_depth = None, min_samples_leaf = 1)
+[INFO] Umbral operativo (elegido con CV en train para recall >= 60%): 0.200
+[REPORTE DE CLASIFICACION DEL GANADOR EN TEST]
+                precision    recall  f1-score   support
+
+0 Cliente fiel       0.79      0.33      0.46      7929
+    1 Abandono       0.21      0.67      0.32      2071
+
+      accuracy                           0.40     10000
+     macro avg       0.50      0.50      0.39     10000
+  weighted avg       0.67      0.40      0.43     10000
+
+[MATRIZ DE CONFUSION] TN=2599 FP=5330 FN=681 TP=1390
+[META O3] AUC-ROC >= 0.75: NO (0.496) | Recall >= 60%: SI (67.1%)
+[INFO] Diferencia de AUC en Test (Exp 2 - Exp 3) = +0.0120 | IC 95% bootstrap [-0.0063, +0.0301] -> diferencia NO significativa (empate técnico)
+[INFO] Importancia por permutación (caída de AUC en test): satisfaccion=0.006, quejas=0.005, devoluciones_por_compra=0.005, quejas_por_compra=0.003, num_compras=0.002
+[SUCCESS] Modelo candidato serializado en: models/real/modelo_candidato.joblib
+[SUCCESS] Modelo baseline serializado en: models/real/modelo_baseline.joblib
+[SUCCESS] Escalador (ajustado solo con train) en: models/real/scaler.joblib | umbral y metadatos: models/real/config_modelo.json
+[SUCCESS] Reportes: reports/real/experimentos.csv, reports/real/metricas.json, gráficas en reports/real/figures
