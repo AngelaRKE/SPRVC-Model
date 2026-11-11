@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+*.zip
+data/processed/
+data/raw/
+.venv/
+.DS_Store
